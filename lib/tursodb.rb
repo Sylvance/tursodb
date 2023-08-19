@@ -16,6 +16,14 @@ require_relative "tursodb/authentication_api/mint_platform_api_token_for_user"
 require_relative "tursodb/authentication_api/revoke_platform_api_token_for_user"
 require_relative "tursodb/authentication_api/validate_platform_api_token"
 
+# Location API
+## Resources
+require_relative "tursodb/location_api/resources/location"
+## Shared
+require_relative "tursodb/location_api/shared/result"
+## APIs
+require_relative "tursodb/location_api/get_all_supported_locations"
+
 # Organization API
 ## Resources
 require_relative "tursodb/organization_api/resources/member"
