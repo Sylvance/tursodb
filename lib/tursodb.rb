@@ -24,6 +24,17 @@ require_relative "tursodb/location_api/shared/result"
 ## APIs
 require_relative "tursodb/location_api/get_all_supported_locations"
 
+# Logical Database API
+## Resources
+require_relative "tursodb/logical_database_api/resources/database_instance_usage"
+require_relative "tursodb/logical_database_api/resources/logical_database_usage"
+require_relative "tursodb/logical_database_api/resources/logical_database"
+require_relative "tursodb/logical_database_api/resources/usage"
+## Shared
+require_relative "tursodb/logical_database_api/shared/result"
+## APIs
+# ..
+
 # Organization API
 ## Resources
 require_relative "tursodb/organization_api/resources/member"
