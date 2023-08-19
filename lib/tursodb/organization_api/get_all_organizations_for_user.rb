@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # Docs:
-# https://docs.turso.tech/reference/platform-rest-api/auth/get-tokens-for-user
+# https://docs.turso.tech/reference/platform-rest-api/organization/get-organizations-for-user
 #
 require "net/http"
 
 module Tursodb
-  module AuthenticationApi
-    class GetAllPlatformApiTokens
-      BASE_PATH = "/v1/auth/api-tokens"
+  module OrganizationApi
+    class GetAllOrganizationsForUser
+      BASE_PATH = "/v1/organizations"
 
       def initialize(config)
         @config = config
@@ -29,18 +29,22 @@ module Tursodb
       end
 
       class Result
-        attr_reader :tokens, :empty
+        attr_reader :organizations, :empty
 
         def initialize(data)
-          @tokens = data.key?("tokens") ? populate(data) : []
-          @empty = !data.key?("tokens")
+          @organizations = data.key?("organizations") ? populate(data) : []
+          @empty = !data.key?("organizations")
         end
 
         private
 
         def populate(data)
-          data["tokens"].map do |token_data|
-            Resources::PlatformApiToken.new(id: token_data["id"], name: token_data["name"])
+          data["organizations"].map do |organization_data|
+            Resources::Organization.new(
+              name: organization_data["name"],
+              slug: organization_data["slug"],
+              type: organization_data["type"]
+            )
           end
         end
       end

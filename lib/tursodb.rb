@@ -16,6 +16,16 @@ require_relative "tursodb/authentication_api/mint_platform_api_token_for_user"
 require_relative "tursodb/authentication_api/revoke_platform_api_token_for_user"
 require_relative "tursodb/authentication_api/validate_platform_api_token"
 
+# Organization API
+## Resources
+require_relative "tursodb/organization_api/resources/member"
+require_relative "tursodb/organization_api/resources/organization"
+## Shared
+require_relative "tursodb/organization_api/shared/result"
+## APIs
+require_relative "tursodb/organization_api/get_all_organization_members"
+require_relative "tursodb/organization_api/get_all_organizations_for_user"
+
 module Tursodb
   class Error < StandardError; end
 end

@@ -34,8 +34,7 @@ module Tursodb
 
         def initialize(data, token)
           @token = if data.key?("exp")
-                     populate(data,
-                              token)
+                     populate(data, token)
                    else
                      Resources::ValidateTokenExpiry.new(expiry: nil, token: token)
                    end

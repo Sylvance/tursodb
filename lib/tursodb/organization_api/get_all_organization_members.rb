@@ -6,16 +6,16 @@
 require "net/http"
 
 module Tursodb
-  module AuthenticationApi
-    class GetAllPlatformApiTokens
-      BASE_PATH = "/v1/auth/api-tokens"
+  module OrganizationApi
+    class GetAllOrganizationMembers
+      BASE_PATH = "/v1/organizations"
 
       def initialize(config)
         @config = config
       end
 
-      def call
-        uri = URI.join(@config.base_url, BASE_PATH)
+      def call(slug)
+        uri = URI.join(@config.base_url, "#{BASE_PATH}/#{slug}/members")
         request = Net::HTTP::Get.new(uri)
         request["Authorization"] = "Bearer #{@config.token}"
 
@@ -29,18 +29,18 @@ module Tursodb
       end
 
       class Result
-        attr_reader :tokens, :empty
+        attr_reader :members, :empty
 
         def initialize(data)
-          @tokens = data.key?("tokens") ? populate(data) : []
-          @empty = !data.key?("tokens")
+          @members = data.key?("members") ? populate(data) : []
+          @empty = !data.key?("members")
         end
 
         private
 
         def populate(data)
-          data["tokens"].map do |token_data|
-            Resources::PlatformApiToken.new(id: token_data["id"], name: token_data["name"])
+          data["members"].map do |member_data|
+            Resources::Member.new(role: member_data["role"], username: member_data["username"])
           end
         end
       end
