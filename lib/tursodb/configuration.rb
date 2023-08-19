@@ -2,13 +2,13 @@
 
 # Docs:
 # https://docs.turso.tech/reference/platform-rest-api/#about-the-examples-in-this-documentation
-# 
+#
 module Tursodb
   class Configuration
     attr_accessor :base_url, :token
 
     def initialize
-      @base_url = 'https://api.turso.tech'
+      @base_url = "https://api.turso.tech"
       @token = nil
     end
 
